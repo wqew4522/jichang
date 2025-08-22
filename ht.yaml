@@ -17,8 +17,8 @@ proxy-providers:
     proxy: 直连 
 
 
-  mitce:
-    url: "https://rcy33unpcc.r.worldssl.net/?sid=312694&token=srvfengf"
+  yun:
+    url: "https://liangxin.xyz/api/v1/liangxin?OwO=ca1b08044f848dc71c69856523c2bf4b"
     type: http
     interval: 86400
     health-check:
@@ -245,4 +245,5 @@ rule-providers:
   Google / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}  
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
 # GateFireWall / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gfw.mrs"}
+
 
