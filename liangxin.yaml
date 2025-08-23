@@ -97,10 +97,10 @@ proxy-groups:
   - {name: Facebook, <<: *default}
   - {name: Steam, <<: *default}
   - {name: Game, <<: *default}
-  - {name: YouTube, type: select, include-all: true, filter: "^((?!(直连|拒绝)).)*$"}
+  - {name: YouTube, type: select, proxies: [所有-自动,香港-自动,台湾-自动,日本-自动,新加坡-自动,韩国-自动,美国-自动,荷兰-自动,洛杉矶-自动,澳大利亚-自动,印度-自动,墨西哥-自动,巴西-自动,德国-自动,法国-自动,英国-自动,西班牙-自动,其他-自动,直连,拒绝], include-all: true, filter: "^((?!(直连|拒绝)).)*$"}
   - {name: TikTok, <<: *default}
   - {name: Disney, <<: *default}
-  - {name: Netflix, type: select, include-all: true, filter: "^((?!(直连|拒绝)).)*$"}
+  - {name: Netflix, type: select, proxies: [所有-自动,香港-自动,台湾-自动,日本-自动,新加坡-自动,韩国-自动,美国-自动,荷兰-自动,洛杉矶-自动,澳大利亚-自动,印度-自动,墨西哥-自动,巴西-自动,德国-自动,法国-自动,英国-自动,西班牙-自动,其他-自动,直连,拒绝], include-all: true, filter: "^((?!(直连|拒绝)).)*$"}
   - {name: HBO, <<: *default}
   - {name: Spotify, <<: *default}
   - {name: Crypto, <<: *default}
@@ -236,4 +236,5 @@ rule-providers:
   Google / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}  
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
 # GateFireWall / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gfw.mrs"}
+
 
