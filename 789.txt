@@ -1,0 +1,216 @@
+port: 7890
+socks-port: 7891
+redir-port: 7892
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: 0.0.0.0:9090
+
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  fallback:
+    - 1.1.1.1
+    - 8.8.8.8
+
+proxy-providers:
+  mysub:
+    type: http
+    url: "https://liangxin.xyz/api/v1/liangxin?OwO=ca1b08044f848dc71c69856523c2bf4b"
+    interval: 86400
+    path: ./proxy_providers/mysub.yaml
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+
+# =====================
+# 分组
+# =====================
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    use:
+      - mysub
+    proxies:
+      - 自动选择
+      - 手动切换
+      - 香港-自动
+      - 台湾-自动
+      - 日本-自动
+      - 新加坡-自动
+      - 韩国-自动
+      - 美国-自动
+      - 荷兰-自动
+      - 洛杉矶-自动
+      - 澳大利亚-自动
+      - 印度-自动
+      - 墨西哥-自动
+      - 巴西-自动
+      - 德国-自动
+      - 法国-自动
+      - 英国-自动
+      - 西班牙-自动
+      - DIRECT
+
+  # 自动选择所有节点
+  - { name: 自动选择, type: url-test, use: [mysub], url: http://www.gstatic.com/generate_204, interval: 600 }
+
+  # 手动切换所有节点
+  - { name: 手动切换, type: select, use: [mysub] }
+
+  # 各地区自动测速分组
+  - { name: 香港-自动, type: url-test, use: [mysub], filter: "香港|HK|Hong Kong", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 台湾-自动, type: url-test, use: [mysub], filter: "台湾|TW|Taiwan", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 日本-自动, type: url-test, use: [mysub], filter: "日本|JP|Japan", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 新加坡-自动, type: url-test, use: [mysub], filter: "新加坡|SG|Singapore", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 韩国-自动, type: url-test, use: [mysub], filter: "韩国|KR|Korea", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 美国-自动, type: url-test, use: [mysub], filter: "美国|US|United States|USA", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 荷兰-自动, type: url-test, use: [mysub], filter: "荷兰|NL|Netherlands", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 洛杉矶-自动, type: url-test, use: [mysub], filter: "洛杉矶|Los Angeles|LA", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 澳大利亚-自动, type: url-test, use: [mysub], filter: "澳大利亚|AU|Australia", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 印度-自动, type: url-test, use: [mysub], filter: "印度|IN|India", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 墨西哥-自动, type: url-test, use: [mysub], filter: "墨西哥|MX|Mexico", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 巴西-自动, type: url-test, use: [mysub], filter: "巴西|BR|Brazil", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 德国-自动, type: url-test, use: [mysub], filter: "德国|DE|Germany", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 法国-自动, type: url-test, use: [mysub], filter: "法国|FR|France", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 英国-自动, type: url-test, use: [mysub], filter: "英国|UK|United Kingdom|England", url: http://www.gstatic.com/generate_204, interval: 600 }
+  - { name: 西班牙-自动, type: url-test, use: [mysub], filter: "西班牙|ES|Spain", url: http://www.gstatic.com/generate_204, interval: 600 }
+
+  # 专属服务分流
+  - { name: 🎯 全球直连, type: select, proxies: [DIRECT, 🚀 节点选择] }
+  - { name: 📺 国内媒体, type: select, proxies: [DIRECT, 🚀 节点选择] }
+  - { name: 🌍 国外媒体, type: select, proxies: [🚀 节点选择, DIRECT] }
+
+  - name: 📹 YouTube
+    type: select
+    use:
+      - mysub
+    proxies:
+      - 🚀 节点选择
+      - 自动选择
+      - 手动切换
+      - 台湾-自动
+      - 日本-自动
+      - 新加坡-自动
+      - 韩国-自动
+      - 美国-自动
+      - 荷兰-自动
+      - 洛杉矶-自动
+      - 澳大利亚-自动
+      - 印度-自动
+      - 墨西哥-自动
+      - 巴西-自动
+      - 德国-自动
+      - 法国-自动
+      - 英国-自动
+      - 西班牙-自动
+
+  - name: 🎬 Netflix
+    type: select
+    use:
+      - mysub
+    proxies:
+      - 🚀 节点选择
+      - 自动选择
+      - 手动切换
+      - 台湾-自动
+      - 日本-自动
+      - 新加坡-自动
+      - 韩国-自动
+      - 美国-自动
+      - 荷兰-自动
+      - 洛杉矶-自动
+      - 澳大利亚-自动
+      - 印度-自动
+      - 墨西哥-自动
+      - 巴西-自动
+      - 德国-自动
+      - 法国-自动
+      - 英国-自动
+      - 西班牙-自动
+
+  - name: 🎬 Disney+
+    type: select
+    use:
+      - mysub
+    proxies:
+      - 🚀 节点选择
+      - 自动选择
+      - 手动切换
+      - 台湾-自动
+      - 日本-自动
+      - 新加坡-自动
+      - 韩国-自动
+      - 美国-自动
+      - 荷兰-自动
+      - 洛杉矶-自动
+      - 澳大利亚-自动
+      - 印度-自动
+      - 墨西哥-自动
+      - 巴西-自动
+      - 德国-自动
+      - 法国-自动
+      - 英国-自动
+      - 西班牙-自动
+
+  - { name: ✈️ Telegram, type: select, proxies: [🚀 节点选择, 新加坡-自动, 美国-自动, 香港-自动] }
+  - { name: 🎬 HBO Max, type: select, proxies: [🚀 节点选择, 美国-自动, 英国-自动, 德国-自动, 台湾-自动] }
+  - { name: 🎮 TikTok, type: select, proxies: [🚀 节点选择, 新加坡-自动, 美国-自动, 日本-自动] }
+  - { name: 🎮 巴哈姆特, type: select, proxies: [台湾-自动, 🚀 节点选择] }
+  - { name: 🎥 哔哩哔哩, type: select, proxies: [DIRECT, 台湾-自动, 香港-自动] }
+  - { name: 🤖 OpenAI, type: select, proxies: [美国-自动, 新加坡-自动, 🚀 节点选择] }
+  - { name: 🍎 苹果服务, type: select, proxies: [DIRECT, 🚀 节点选择] }
+  - { name: 🔔 谷歌FCM, type: select, proxies: [🚀 节点选择, DIRECT, 美国-自动] }
+  - { name: 🔍 微软Bing, type: select, proxies: [🚀 节点选择, DIRECT] }
+  - { name: 🪟 微软服务, type: select, proxies: [🚀 节点选择, DIRECT] }
+
+  # 漏网之鱼（兜底分组）
+  - { name: 🕳️ 漏网之鱼, type: select, proxies: [🚀 节点选择, 自动选择, 手动切换, DIRECT] }
+
+# =====================
+# 规则集
+# =====================
+rule-providers:
+  OpenAI: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAI.list", path: ./rule_providers/OpenAI.list, interval: 86400 }
+  YouTube: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list", path: ./rule_providers/YouTube.list, interval: 86400 }
+  Telegram: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Telegram.list", path: ./rule_providers/Telegram.list, interval: 86400 }
+  Netflix: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list", path: ./rule_providers/Netflix.list, interval: 86400 }
+  Disney: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/DisneyPlus.list", path: ./rule_providers/DisneyPlus.list, interval: 86400 }
+  HBO: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/HBO.list", path: ./rule_providers/HBO.list, interval: 86400 }
+  TikTok: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/TikTok.list", path: ./rule_providers/TikTok.list, interval: 86400 }
+  Bahamut: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list", path: ./rule_providers/Bahamut.list, interval: 86400 }
+  Bilibili: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list", path: ./rule_providers/Bilibili.list, interval: 86400 }
+  DomesticMedia: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list", path: ./rule_providers/DomesticMedia.list, interval: 86400 }
+  GlobalMedia: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list", path: ./rule_providers/GlobalMedia.list, interval: 86400 }
+  Apple: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list", path: ./rule_providers/Apple.list, interval: 86400 }
+  GoogleFCM: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleFCM.list", path: ./rule_providers/GoogleFCM.list, interval: 86400 }
+  MicrosoftBing: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list", path: ./rule_providers/MicrosoftBing.list, interval: 86400 }
+  Microsoft: { type: http, behavior: classical, url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list", path: ./rule_providers/Microsoft.list, interval: 86400 }
+
+# =====================
+# 规则
+# =====================
+rules:
+  - RULE-SET,OpenAI,🤖 OpenAI
+  - RULE-SET,YouTube,📹 YouTube
+  - RULE-SET,Telegram,✈️ Telegram
+  - RULE-SET,Netflix,🎬 Netflix
+  - RULE-SET,Disney,🎬 Disney+
+  - RULE-SET,HBO,🎬 HBO Max
+  - RULE-SET,TikTok,🎮 TikTok
+  - RULE-SET,Bahamut,🎮 巴哈姆特
+  - RULE-SET,Bilibili,🎥 哔哩哔哩
+  - RULE-SET,DomesticMedia,📺 国内媒体
+  - RULE-SET,GlobalMedia,🌍 国外媒体
+  - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,GoogleFCM,🔔 谷歌FCM
+  - RULE-SET,MicrosoftBing,🔍 微软Bing
+  - RULE-SET,Microsoft,🪟 微软服务
+  - GEOIP,CN,🎯 全球直连
+  - MATCH,🕳️ 漏网之鱼
