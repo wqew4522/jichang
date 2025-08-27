@@ -21,7 +21,7 @@ dns:
 proxy-providers:
   mysub:
     type: http
-    url: "https://Dty7ATQq.subxly.cfd:8443/api/v1/client/3bedf52c5cff9447d1b80fbfd21e94ae"
+    url: "https://kfd2SS.subxly.cfd:8443/api/v1/client/3bedf52c5cff9447d1b80fbfd21e94ae?flag=clashmeta"
     interval: 86400
     path: ./proxy_providers/mysub.yaml
     health-check:
@@ -217,3 +217,4 @@ rules:
   - RULE-SET,Microsoft,🪟 微软服务
   - GEOIP,CN,🎯 全球直连
   - MATCH,🕳️ 漏网之鱼
+
