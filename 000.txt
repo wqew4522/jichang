@@ -1,0 +1,326 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: 0.0.0.0:9090
+secret: ""
+
+proxy-providers:
+  SUBSCRIPTION:
+    type: http
+    url: "https://HKct8Ne3.subxly.cfd:8443/api/v1/client/3bedf52c5cff9447d1b80fbfd21e94ae"  
+    interval: 3600
+    path: ./proxy_providers/subscription.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+
+proxy-groups:
+  - name: 节点选择
+    type: select
+    proxies:
+      - 自动选择
+      - 手动切换
+      - 油管视频
+      - 奈飞视频
+      - 迪士尼
+      - Max
+      - 电报消息
+      - OpenAi
+      - 国外媒体
+      - 国内媒体
+      - 全球直连
+      - 漏网之鱼
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇳🇱 荷兰节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+
+  - name: 手动切换
+    type: select
+    use:
+      - SUBSCRIPTION
+
+  - name: 自动选择
+    type: url-test
+    use:
+      - SUBSCRIPTION
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+
+# 四大流媒体策略组
+  - name: 油管视频
+    type: select
+    use:
+      - SUBSCRIPTION
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇳🇱 荷兰节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+
+  - name: 奈飞视频
+    type: select
+    use:
+      - SUBSCRIPTION
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇳🇱 荷兰节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+
+  - name: 迪士尼
+    type: select
+    use:
+      - SUBSCRIPTION
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇳🇱 荷兰节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+
+  - name: Max
+    type: select
+    use:
+      - SUBSCRIPTION
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇳🇱 荷兰节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+
+# 新增：电报消息、OpenAi、巴哈姆特显示全部节点
+  - name: 电报消息
+    type: select
+    use:
+      - SUBSCRIPTION
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇳🇱 荷兰节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+
+  - name: OpenAi
+    type: select
+    use:
+      - SUBSCRIPTION
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇳🇱 荷兰节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+
+  - name: 巴哈姆特
+    type: select
+    use:
+      - SUBSCRIPTION
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇳🇱 荷兰节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+
+# 其他策略组
+  - { name: 国内媒体, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 谷歌FCM, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 微软Bing, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 微软云盘, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 苹果服务, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 游戏平台, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 哔哩哔哩, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 国外媒体, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 网易音乐, type: select, proxies: [DIRECT, 节点选择, 自动选择, 手动切换] }
+  - { name: 全球直连, type: select, proxies: [DIRECT, 节点选择] }
+  - { name: 漏网之鱼, type: select, proxies: [DIRECT, 节点选择, 全球直连, 自动选择, 手动切换] }
+
+# 地区分组（自动测速）
+  - { name: 🇭🇰 香港节点, type: url-test, use: [SUBSCRIPTION], filter: "香港|HK|Hong Kong", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇨🇳 台湾节点, type: url-test, use: [SUBSCRIPTION], filter: "台湾|台北|TW|Taiwan", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇸🇬 狮城节点, type: url-test, use: [SUBSCRIPTION], filter: "新加坡|狮城|SG|Singapore", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇳🇱 荷兰节点, type: url-test, use: [SUBSCRIPTION], filter: "荷兰|NL|Netherlands", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇯🇵 日本节点, type: url-test, use: [SUBSCRIPTION], filter: "日本|JP|Japan", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇺🇲 美国节点, type: url-test, use: [SUBSCRIPTION], filter: "美国|US|United States", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇰🇷 韩国节点, type: url-test, use: [SUBSCRIPTION], filter: "韩国|KR|Korea", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇮🇳 印度节点, type: url-test, use: [SUBSCRIPTION], filter: "印度|IN|India", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇦🇺 澳大利亚节点, type: url-test, use: [SUBSCRIPTION], filter: "澳大利亚|悉尼|AU|Australia", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇧🇷 巴西节点, type: url-test, use: [SUBSCRIPTION], filter: "巴西|BR|Brazil", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇩🇪 德国节点, type: url-test, use: [SUBSCRIPTION], filter: "德国|DE|Germany", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇫🇷 法国节点, type: url-test, use: [SUBSCRIPTION], filter: "法国|FR|France", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇬🇧 英国节点, type: url-test, use: [SUBSCRIPTION], filter: "英国|UK|United Kingdom", url: http://www.gstatic.com/generate_204, interval: 300 }
+  - { name: 🇪🇸 西班牙节点, type: url-test, use: [SUBSCRIPTION], filter: "西班牙|ES|Spain", url: http://www.gstatic.com/generate_204, interval: 300 }
+
+script:
+  code: |
+    def main(ctx, metadata):
+        domain = metadata["host"] or ""
+
+        # OpenAI
+        if "openai.com" in domain or "ai.com" in domain:
+            return "OpenAi"
+
+        # YouTube
+        if "youtube.com" in domain or "googlevideo.com" in domain or "ytimg.com" in domain:
+            return "油管视频"
+
+        # Netflix
+        if "netflix.com" in domain or "nflxvideo.net" in domain or "nflxso.net" in domain:
+            return "奈飞视频"
+
+        # Disney+
+        if "disneyplus.com" in domain or "dssott.com" in domain:
+            return "迪士尼"
+
+        # Max (HBO Max)
+        if "hbomax.com" in domain or "play.hbomaxcdn.com" in domain:
+            return "Max"
+
+        # Telegram
+        if "t.me" in domain or "telegram.org" in domain:
+            return "电报消息"
+
+        # 巴哈姆特
+        if "bahamut.com.tw" in domain or "gamer.com.tw" in domain:
+            return "巴哈姆特"
+
+        # 哔哩哔哩
+        if "bilibili.com" in domain or "acg.tv" in domain or "b23.tv" in domain:
+            return "哔哩哔哩"
+
+        # 网易云音乐
+        if "163.com" in domain or "music.126.net" in domain:
+            return "网易音乐"
+
+        # 苹果服务
+        if "apple.com" in domain or "icloud.com" in domain or "me.com" in domain:
+            return "苹果服务"
+
+        # 微软服务
+        if "bing.com" in domain:
+            return "微软Bing"
+        if "onedrive.live.com" in domain or "sharepoint.com" in domain:
+            return "微软云盘"
+
+        # Google FCM
+        if "googleapis.com" in domain or "gstatic.com" in domain:
+            return "谷歌FCM"
+
+        # 游戏平台
+        if "epicgames.com" in domain or "steampowered.com" or "xboxlive.com" in domain:
+            return "游戏平台"
+
+        # 国外网站默认走国外媒体
+        if ctx.geoip(metadata["dst_ip"]) != "CN":
+            return "国外媒体"
+
+        # 国内网站默认走国内媒体
+        if ctx.geoip(metadata["dst_ip"]) == "CN":
+            return "国内媒体"
+
+        # 兜底
+        return "漏网之鱼"
+
+rules:
+  - SCRIPT,script,漏网之鱼
