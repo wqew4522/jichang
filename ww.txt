@@ -1,0 +1,298 @@
+# -----------------------------
+# OpenClash 完整配置示例
+# -----------------------------
+
+# 订阅提供者
+proxy-providers:
+  sub:
+    type: http
+    url: "https://VYTMdZRj.subxly.cfd:8443/api/v1/client/3bedf52c5cff9447d1b80fbfd21e94ae"
+    interval: 86400   # 24小时更新订阅节点
+
+# 代理节点（本地或手动添加节点可在这里）
+proxies: []
+
+# -----------------------------
+# 策略组
+# -----------------------------
+proxy-groups:
+
+  # 节点选择：自动测速地区节点
+  - name: 节点选择
+    type: url-test
+    proxies:
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+      - 🇳🇱 荷兰节点
+    url: http://www.gstatic.com/generate_204
+    interval: 180   # 3分钟测速节点
+
+  # 手动切换
+  - name: 手动切换
+    type: select
+    use: [sub]
+
+  # 自动选择
+  - name: 自动选择
+    type: fallback
+    use: [sub]
+
+  # -----------------------------
+  # 流媒体策略组
+  # -----------------------------
+  - name: 油管视频
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+      - 🇳🇱 荷兰节点
+    use: [sub]
+
+  - name: 奈飞视频
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+      - 🇳🇱 荷兰节点
+    use: [sub]
+
+  - name: 迪士尼
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+      - 🇳🇱 荷兰节点
+    use: [sub]
+
+  - name: Max
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - 🇭🇰 香港节点
+      - 🇨🇳 台湾节点
+      - 🇸🇬 狮城节点
+      - 🇯🇵 日本节点
+      - 🇺🇲 美国节点
+      - 🇰🇷 韩国节点
+      - 🇮🇳 印度节点
+      - 🇦🇺 澳大利亚节点
+      - 🇧🇷 巴西节点
+      - 🇩🇪 德国节点
+      - 🇫🇷 法国节点
+      - 🇬🇧 英国节点
+      - 🇪🇸 西班牙节点
+      - 🇳🇱 荷兰节点
+    use: [sub]
+
+  # -----------------------------
+  # 其他服务策略组
+  # -----------------------------
+  - name: 电报消息
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - DIRECT
+      - use: [sub]
+
+  - name: OpenAI
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - DIRECT
+      - use: [sub]
+
+  - name: 哔哩哔哩
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+  - name: 国内媒体
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+  - name: 国外媒体
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - 自动选择
+      - use: [sub]
+
+  - name: 谷歌FCM
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+  - name: 微软Bing
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+  - name: 微软云盘
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+  - name: 苹果服务
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+  - name: 游戏平台
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+  - name: 网易音乐
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+  - name: 漏网之鱼
+    type: select
+    proxies:
+      - 节点选择
+      - 手动切换
+      - DIRECT
+      - use: [sub]
+
+# -----------------------------
+# 规则部分（精准分流）
+# -----------------------------
+rules:
+  # 流媒体
+  - DOMAIN-SUFFIX,youtube.com,油管视频
+  - DOMAIN-SUFFIX,youtu.be,油管视频
+  - DOMAIN-SUFFIX,netflix.com,奈飞视频
+  - DOMAIN-SUFFIX,nflxvideo.net,奈飞视频
+  - DOMAIN-SUFFIX,disneyplus.com,迪士尼
+  - DOMAIN-SUFFIX,disneyplus.net,迪士尼
+  - DOMAIN-SUFFIX,max.com,Max
+  - DOMAIN-SUFFIX,max.net,Max
+
+  # 国内媒体
+  - DOMAIN-SUFFIX,bilibili.com,哔哩哔哩
+  - DOMAIN-SUFFIX,acfun.cn,哔哩哔哩
+  - DOMAIN-SUFFIX,iqiyi.com,国内媒体
+  - DOMAIN-SUFFIX,youku.com,国内媒体
+  - DOMAIN-SUFFIX,mgtv.com,国内媒体
+
+  # 国外媒体
+  - DOMAIN-SUFFIX,bbc.com,国外媒体
+  - DOMAIN-SUFFIX,cnn.com,国外媒体
+  - DOMAIN-SUFFIX,nyt.com,国外媒体
+  - DOMAIN-SUFFIX,forbes.com,国外媒体
+
+  # OpenAI
+  - DOMAIN-SUFFIX,openai.com,OpenAI
+
+  # 谷歌 FCM
+  - DOMAIN-SUFFIX,gcm.googleapis.com,谷歌FCM
+  - DOMAIN-SUFFIX,fcm.googleapis.com,谷歌FCM
+
+  # 微软服务
+  - DOMAIN-SUFFIX,bing.com,微软Bing
+  - DOMAIN-SUFFIX,onedrive.com,微软云盘
+  - DOMAIN-SUFFIX,live.com,微软云盘
+
+  # 苹果服务
+  - DOMAIN-SUFFIX,icloud.com,苹果服务
+  - DOMAIN-SUFFIX,itunes.apple.com,苹果服务
+  - DOMAIN-SUFFIX,apple.com,苹果服务
+
+  # 游戏平台
+  - DOMAIN-SUFFIX,steamcommunity.com,游戏平台
+  - DOMAIN-SUFFIX,epicgames.com,游戏平台
+  - DOMAIN-SUFFIX,origin.com,游戏平台
+  - DOMAIN-SUFFIX,riotgames.com,游戏平台
+
+  # 网易音乐
+  - DOMAIN-SUFFIX,music.163.com,网易音乐
+  - DOMAIN-SUFFIX,netease.com,网易音乐
+
+  # 其他未匹配流量走漏网之鱼
+  - MATCH,漏网之鱼
