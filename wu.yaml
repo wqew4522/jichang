@@ -149,3 +149,4 @@ rules:
   - RULE-SET,proxy,国外媒体        # 媒体/海外站走代理
   - GEOIP,CN,全球直连,no-resolve   # 中国 IP 直连并避免解析泄露
   - MATCH,漏网之鱼
+
