@@ -4,7 +4,7 @@ log-level: info
 
 # —— 订阅节点 ——
 proxy-providers:
-  订阅:
+  sub:
     type: http
     url: "https://VYTMdZRj.subxly.cfd:8443/api/v1/client/3bedf52c5cff9447d1b80fbfd21e94ae"  
     path: ./providers/proxies/sub.yaml
@@ -149,4 +149,5 @@ rules:
   - RULE-SET,proxy,国外媒体        # 媒体/海外站走代理
   - GEOIP,CN,全球直连,no-resolve   # 中国 IP 直连并避免解析泄露
   - MATCH,漏网之鱼
+
 
