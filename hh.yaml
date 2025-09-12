@@ -7,7 +7,7 @@
 proxy-providers:
 
   01:
-    url: "https://XfkLw.subxly.cfd:8443/api/v1/client/3bedf52c5cff9447d1b80fbfd21e94ae"
+    url: "https://zcwNI3vi.subxly.cfd:8443/api/v1/client/13c376c5435d5da7ea332cee20230cd2"
     type: http
     interval: 86400
     health-check:
@@ -191,3 +191,4 @@ rule-providers:
   Google / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}  
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
 # GateFireWall / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/gfw.mrs"}
+
