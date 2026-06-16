@@ -7,7 +7,7 @@
 proxy-providers:
 
   01:
-    url: "https://sub01.fkknet.cn/api/v1/client/subscribe?token=b663a751c326c7e63fa9eed1442369ab"
+    url: "https://liangxin.xyz/api/v1/liangxin?OwO=ca1b08044f848dc71c69856523c2bf4b"
     type: http
     interval: 86400
     health-check:
